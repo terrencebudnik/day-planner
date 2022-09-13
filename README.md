@@ -1,7 +1,5 @@
 # Day-planner
 
-[Live Link](https://terrencebudnik.github.io/day-planner/)
-
 [Screenshot](./Assets/day-planner-screenshoot.png)
 
 GIVEN I am using a daily planner to create a schedule
