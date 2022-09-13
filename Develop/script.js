@@ -1,84 +1,92 @@
 var today = moment();
 $("#currentDay").text(today.format("MMM Do YY"));
+var currentTime = moment().hours();
+var container = $('.container');
 
-var time = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+var timeRow = $('.row'); 
 
-var mainBody = $('.container');
+var apptCol = $('.col-6'); 
 
-for (t = 0, x = 9; t < 9; t++, x++) {
-    var allRows = $('<div>');
-    allRows.attr('class', 'row time-block');
-    allRows.attr('data', x);
-    mainBody.append(allRows);
+var saveAppt = $(".saveBtn"); 
 
 
-    var timeCol = $('<div>');
-    timeCol.attr('class', 'hour col-3');
-    timeCol.text(time[t]);
-    allRows.append(timeCol);
+var nine = $('#nine');
+var ten= $('#ten');
+var eleven = $('#eleven');
+var twelve = $('#twelve');
+var thirteen = $('#thirteen');
+var fourteen = $('#fourteen');
+var fifteen= $('#fifteen');
+var sixteen = $('#sixteen');
+var seventeen = $('#seventeen'); 
 
-    var apptCol = $('<input>');
-    apptCol.attr('class', 'col-6 textarea form-label');
-    apptCol.attr('id', x);
-    allRows.append(apptCol);
-
-    var saveCol = $('<button>');
-    saveCol.attr('class', 'saveBtn col-3');
-    saveCol.text('Save');
-    allRows.append(saveCol);
-}
-
-var saveButton = $(".saveBtn");
-
-var nineText = $("#9").text;
-var tenText = $("#10").text;
-var elevenText = $("#11").text;
-var twelveText = $("#12").text;
-var thirteenText = $("#13").text;
-var fourteenText = $("#14").text;
-var fifteenText = $("#15").text;
-var sixteenText = $("#16").text;
-var seventeenText = $("#17").text; 
-
-saveButton.on("click", function(event){
+saveAppt.on("click", function(event) {
     event.preventDefault(); 
-    localStorage.setItem("hour9", nineTex);
-    localStorage.setItem("hour10",tenText);
-    localStorage.setItem("hour11", elevenText);
-    localStorage.setItem("hour12", twelveText);
-    localStorage.setItem("hour13", thirteenText);
-    localStorage.setItem("hour14", fourteenText);
-    localStorage.setItem("hour15", fifteenText);
-    localStorage.setItem("hour16", sixteenText);
-    localStorage.setItem("hour17", seventeenText);
+
+   
+    var nineInput = nine.val();
+    var tenInput = ten.val();
+    var elevenInput = eleven.val();
+    var twelveInput = twelve.val();
+    var thirteenInput = thirteen.val();
+    var fourteenInput = fourteen.val();
+    var fifteenInput = fifteen.val();
+    var sixteenInput =sixteen.val();
+    var seventeenInput = seventeen.val(); 
+    
+    
+    
+    
+    localStorage.setItem("nineInput", nineInput);
+    localStorage.setItem("tenInput",tenInput);
+    localStorage.setItem("elevenInput", elevenInput);
+    localStorage.setItem("twelveInput", twelveInput);
+    localStorage.setItem("thirteenInput", thirteenInput);
+    localStorage.setItem("fourteenInput", fourteenInput);
+    localStorage.setItem("fifteenInput", fifteenInput);
+    localStorage.setItem("sixteenInput", sixteenInput);
+    localStorage.setItem("seventeenInput", seventeenInput);
+
+   
+})
+
+var inputData = function () {
+  
+     nine = localStorage.getItem("nineInput");
+     localStorage.getItem("tenInpput");
+     localStorage.getItem("elevenInput");
+     localStorage.getItem("twelveInput",);
+     localStorage.getItem("thirteenInput");
+     localStorage.getItem("fourteenInput");
+     localStorage.getItem("fifteenInput");
+     localStorage.getItem("sixteenInput");
+     localStorage.getItem("seventeenInput");
+
 
 }
-)
-
-function init() {
-    nineText(localStorage.getItem("hour9"));
-    tenText(localStorage.getItem("hour10"));
-    elevenTex(localStorage.getItem("hour11"));
-    twelveText(localStorage.getItem("hour12",));
-    thirteenText(localStorage.getItem("hour13"));
-    fourteenText(localStorage.getItem("hour14"));
-    fifteenText(localStorage.getItem("hour15"));
-    sixteenText(localStorage.getItem("hour16"));
-    seventeenText(localStorage.getItem("hour17"));
-}
 
 
-// var currentTime = moment().hours();
 
-// for (y=0; y < 8; y++){
+inputData(); 
 
-// if (allRows[y].data = currentTime) {
-//     apptCol.attr('class', 'col-6 textarea form-label present')
-// }
-// else if (allRows[y].data < currentTime) {
-//     apptCol.attr('class', 'col-6 textarea form-label future')
-// }
-// else {
-//     apptCol.attr('class', 'col-6 textarea form-label past');
+for (var x = 0; x < 9; x++) {
+    if (timeRow[x].dataset.time == currentTime) {
+        timeRow[x].classList.remove("past");
+        timeRow[x].classList.remove("future");
+        timeRow[x].classList.add("present");
 
-// } }
+    };
+    if (timeRow[x].dataset.time > currentTime) {
+        timeRow[x].classList.remove("past");
+        timeRow[x].classList.remove("present");
+        timeRow[x].classList.add("future");
+
+    };
+    if (timeRow[x].dataset.time < currentTime) {
+        timeRow[x].classList.remove("present");
+        timeRow[x].classList.remove("future");
+        timeRow[x].classList.add("past");
+
+    }
+};
+
